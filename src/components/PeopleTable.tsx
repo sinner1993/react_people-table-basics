@@ -28,7 +28,8 @@ export const PeopleTable: React.FC<Props> = ({ people }) => {
       <tbody>
         {people.map((person, index) => {
           const { name, sex, born, died, fatherName, motherName } = person;
-          const hyphenedName = name.replace(/\s/g, '-') + '-' + born;
+          const hyphenedName =
+            name.toLowerCase().replace(/\s/g, '-') + '-' + born;
           const chosenPerson = classNames({
             'has-background-warning': personId === hyphenedName,
           });
@@ -36,7 +37,7 @@ export const PeopleTable: React.FC<Props> = ({ people }) => {
           const father = people.find(el => fatherName === el.name);
 
           return (
-            <tr key={index} className={chosenPerson}>
+            <tr data-cy="person" key={index} className={chosenPerson}>
               <td>
                 <NavLink
                   to={`/people/${hyphenedName}`}
@@ -52,7 +53,7 @@ export const PeopleTable: React.FC<Props> = ({ people }) => {
                 {mother ? (
                   <Link
                     className="has-text-danger"
-                    to={`/people/${mother.name.replace(/\s/g, '-')}-${mother.born}`}
+                    to={`/people/${mother.name.toLocaleLowerCase().replace(/\s/g, '-')}-${mother.born}`}
                   >
                     {mother.name}
                   </Link>
@@ -65,7 +66,7 @@ export const PeopleTable: React.FC<Props> = ({ people }) => {
               <td>
                 {father ? (
                   <Link
-                    to={`/people/${father.name.replace(/\s/g, '-')}-${father.born}`}
+                    to={`/people/${father.name.toLowerCase().replace(/\s/g, '-')}-${father.born}`}
                   >
                     {father.name}
                   </Link>

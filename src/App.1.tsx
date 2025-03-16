@@ -2,7 +2,6 @@ import { NavLink, Outlet } from 'react-router-dom';
 import { getActiveLink } from './App';
 import { Loader } from './components/Loader';
 
-
 export const App = () => (
   <div data-cy="app">
     <nav
